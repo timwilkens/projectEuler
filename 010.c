@@ -7,7 +7,7 @@
 
 int
 main() {
-    int nums[MAX] = {0};
+    char nums[MAX] = {0};
     for (int i = 2; i <= LIMIT; i++) {
         if (!nums[i]) {
             int j = i * i;
