@@ -33,23 +33,20 @@ func isAbundant(n int) bool {
 }
 
 func main() {
+	abundantSums := make(map[int]bool)
 	abundants := make([]int, 0)
 	total := 0
-	Main: for i := 1; i <= 28123; i++ {
+	for i := 1; i <= 28123; i++ {
 		if isAbundant(i) {
 			abundants = append(abundants, i)
-		}
-
-		Outer: for outer, j := range abundants {
-			for _, k := range abundants[outer:] {
-				if j + k == i {
-					continue Main
-				} else if j + k > i {
-					continue Outer
-				}
+			for _, k := range abundants {
+				abundantSums[k + i] = true
 			}
 		}
-		total += i
+
+		if _,ok := abundantSums[i]; !ok {
+			total += i
+		}
 	}
 	fmt.Println(total)
 }
